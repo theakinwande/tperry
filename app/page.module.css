@@ -1,0 +1,306 @@
+/* ============================================
+   CINEMATIC INTRO
+   ============================================ */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.introContent {
+  text-align: center;
+}
+
+.introName {
+  font-size: clamp(3rem, 12vw, 10rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  color: #fff;
+  overflow: hidden;
+}
+
+.introLine {
+  width: 100px;
+  height: 2px;
+  background: #fff;
+  margin: 2rem auto;
+  transform-origin: left;
+}
+
+.introRole {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   MAIN LAYOUT
+   ============================================ */
+
+.main {
+  min-height: 100vh;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  mix-blend-mode: difference;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.logoImg {
+  filter: brightness(0) invert(1);
+  object-fit: contain;
+  width: auto;
+  height: 100px;
+}
+
+.logoLight {
+  font-weight: 300;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.navLink {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.themeToggle {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.themeToggle:hover {
+  opacity: 0.7;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+}
+
+.heroContent {
+  text-align: center;
+  z-index: 10;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.distortText {
+  display: inline-block;
+  cursor: default;
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: var(--gray-400);
+  max-width: 500px;
+  margin: 0 auto 3rem;
+}
+
+.heroCta {
+  display: inline-block;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.ctaBtn:hover {
+  background: var(--gray-200);
+}
+
+.ctaBtn:hover .ctaArrow {
+  transform: translateX(5px);
+}
+
+.ctaArrow {
+  transition: transform 0.3s ease;
+}
+
+.heroCircle {
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  border: 1px solid var(--gray-800);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.about,
+.contact {
+  padding: 10rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.aboutText {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--gray-400);
+}
+
+.contactLinks {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.contactLink {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 400;
+  position: relative;
+}
+
+.contactLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+.contactLink:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  border-top: 1px solid var(--gray-800);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 1.5rem;
+  }
+
+  .navLinks {
+    gap: 1.5rem;
+  }
+
+  .navLink {
+    font-size: 0.8rem;
+  }
+
+  .about,
+  .contact {
+    padding: 6rem 1.5rem;
+  }
+
+  .contactLinks {
+    gap: 2rem;
+  }
+}

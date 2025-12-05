@@ -1,0 +1,210 @@
+.wrapper {
+  background: #000;
+  color: #fff;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  mix-blend-mode: difference;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.logoImg {
+  filter: brightness(0) invert(1);
+  object-fit: contain;
+  width: auto;
+  height: 100px;
+}
+
+.logoLight {
+  font-weight: 300;
+}
+
+.backLink {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   PAGE HEADER
+   ============================================ */
+
+.pageHeader {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  z-index: 50;
+}
+
+.pageTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.pageSubtitle {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  margin-top: 1rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   HORIZONTAL SCROLL
+   ============================================ */
+
+.scrollContainer {
+  height: 400vh;
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.horizontal {
+  display: flex;
+  gap: 4rem;
+  padding-left: 15rem;
+  padding-right: 10rem;
+}
+
+/* ============================================
+   PROJECT CARDS
+   ============================================ */
+
+.project {
+  flex-shrink: 0;
+}
+
+.projectInner {
+  cursor: pointer;
+}
+
+.projectImage {
+  width: 50vw;
+  max-width: 600px;
+  aspect-ratio: 4/3;
+  background: var(--gray-900);
+  border: 1px solid var(--gray-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.projectInner:hover .projectImage {
+  border-color: var(--gray-600);
+}
+
+.projectNumber {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 200;
+  color: var(--gray-700);
+  transition: color 0.5s ease;
+}
+
+.projectInner:hover .projectNumber {
+  color: var(--gray-500);
+}
+
+.projectInfo {
+  margin-top: 1.5rem;
+}
+
+.projectTitle {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.projectMeta {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   SCROLL HINT
+   ============================================ */
+
+.scrollHint {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .pageHeader {
+    position: static;
+    transform: none;
+    padding: 8rem 2rem 2rem;
+  }
+
+  .pageTitle {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+
+  .pageSubtitle {
+    writing-mode: horizontal-tb;
+    transform: none;
+    margin-top: 0.5rem;
+  }
+
+  .horizontal {
+    padding-left: 2rem;
+  }
+
+  .projectImage {
+    width: 80vw;
+  }
+}
