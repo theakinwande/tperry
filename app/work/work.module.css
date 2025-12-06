@@ -190,7 +190,7 @@
   }
 
   .logoImg {
-    height: 50px;
+    height: 40px;
   }
 
   .backLink {
@@ -198,27 +198,46 @@
   }
 
   .pageHeader {
-    position: static;
-    transform: none;
-    padding: 8rem 2rem 2rem;
+    position: fixed;
+    top: 30%;
+    left: 1rem;
+    padding: 0;
   }
 
   .pageTitle {
-    writing-mode: horizontal-tb;
-    transform: none;
+    font-size: 1rem;
   }
 
   .pageSubtitle {
-    writing-mode: horizontal-tb;
-    transform: none;
-    margin-top: 0.5rem;
+    font-size: 0.6rem;
   }
 
   .horizontal {
-    padding-left: 2rem;
+    padding-left: 6rem;
+    padding-right: 2rem;
+    gap: 2rem;
   }
 
   .projectImage {
-    width: 80vw;
+    width: 70vw;
+  }
+
+  .projectNumber {
+    font-size: 3rem;
+  }
+
+  .projectTitle {
+    font-size: 1.1rem;
+  }
+
+  .projectMeta {
+    gap: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .scrollHint {
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.6rem;
   }
 }

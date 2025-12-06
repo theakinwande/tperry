@@ -116,7 +116,7 @@ export default function Home() {
                 animate={introPhase >= 3 ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
               >
-                Graphics Designer
+                Designer
               </motion.div>
             </motion.div>
           </motion.div>

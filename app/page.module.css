@@ -17,8 +17,8 @@
 }
 
 .introName {
-  font-size: clamp(3rem, 12vw, 10rem);
-  font-weight: 600;
+  font-size: clamp(2rem, 10vw, 8rem);
+  font-weight: 500;
   letter-spacing: -0.05em;
   color: #fff;
   overflow: hidden;
@@ -67,7 +67,7 @@
 
 .logo {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #fff;
   text-decoration: none;
   letter-spacing: -0.02em;
@@ -376,6 +376,6 @@
   }
 
   .footer {
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
   }
 }

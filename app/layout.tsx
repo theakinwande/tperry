@@ -9,7 +9,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "T Perry | Motion Designer",
+  title: "tperry | Designer",
   description: "Motion Designer • Graphics Artist • Video Editor",
 };
 
