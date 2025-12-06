@@ -12,12 +12,13 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-  padding: 2rem;
+  z-index: 200;
+  padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  mix-blend-mode: difference;
+  background: transparent;
+  color: #fff;
 }
 
 .logo {
@@ -29,10 +30,11 @@
 }
 
 .logoImg {
-  filter: brightness(0) invert(1);
   object-fit: contain;
   width: auto;
-  height: 100px;
+  height: 50px;
+  display: block;
+  filter: brightness(0) invert(1);
 }
 
 .logoLight {
@@ -53,14 +55,14 @@
 
 .pageHeader {
   position: fixed;
-  top: 50%;
+  top: 40%;
   left: 2rem;
   transform: translateY(-50%);
   z-index: 50;
 }
 
 .pageTitle {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 500;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -183,6 +185,18 @@
    ============================================ */
 
 @media (max-width: 768px) {
+  .nav {
+    padding: 0.75rem 1rem;
+  }
+
+  .logoImg {
+    height: 50px;
+  }
+
+  .backLink {
+    font-size: 0.8rem;
+  }
+
   .pageHeader {
     position: static;
     transform: none;

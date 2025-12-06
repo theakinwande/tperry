@@ -63,12 +63,7 @@ function DistortText({ children }: { children: string }) {
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const [introPhase, setIntroPhase] = useState(0);
-  const [isDark, setIsDark] = useState(true);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('light-theme');
-  };
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Cinematic intro sequence
@@ -103,7 +98,7 @@ export default function Home() {
                 animate={introPhase >= 1 ? { clipPath: 'inset(0 0% 0 0)' } : {}}
                 transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
               >
-                T PERRY
+                tperry
               </motion.div>
               
               {/* Line */}
@@ -121,7 +116,7 @@ export default function Home() {
                 animate={introPhase >= 3 ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
               >
-                Motion Designer
+                Graphics Designer
               </motion.div>
             </motion.div>
           </motion.div>
@@ -140,14 +135,16 @@ export default function Home() {
           <MagneticText>
             <Link href="/" className={styles.logo}>
               <Image 
-                src="/tperry.png" 
+                src="/tperry.svg" 
                 alt="T Perry Logo" 
-                width={120} 
-                height={40}
+                width={150} 
+                height={64}
                 className={styles.logoImg}
               />
             </Link>
           </MagneticText>
+
+          {/* Desktop Nav Links */}
           <div className={styles.navLinks}>
             <MagneticText>
               <Link href="/work" className={styles.navLink}>Work</Link>
@@ -158,26 +155,26 @@ export default function Home() {
             <MagneticText>
               <a href="#contact" className={styles.navLink}>Contact</a>
             </MagneticText>
-            <MagneticText>
-              <button 
-                className={styles.themeToggle}
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-                  </svg>
-                ) : (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                  </svg>
-                )}
-              </button>
-            </MagneticText>
           </div>
+
+          {/* Mobile Hamburger Button */}
+          <button 
+            className={styles.hamburger}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.open : ''}`} />
+            <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.open : ''}`} />
+            <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.open : ''}`} />
+          </button>
         </nav>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+          <Link href="/work" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>Work</Link>
+          <a href="#about" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>About</a>
+          <a href="#contact" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>Contact</a>
+        </div>
 
         {/* Hero Section */}
         <section className={styles.hero}>
@@ -190,7 +187,7 @@ export default function Home() {
             >
               <DistortText>Creative</DistortText>
               <br />
-              <DistortText>Motion Designer</DistortText>
+              <DistortText>Designer</DistortText>
             </motion.h1>
 
             <motion.p
@@ -278,7 +275,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className={styles.footer}>
-          <p>© 2024 T Perry. All rights reserved.</p>
+          <p>© 2025 tperry. All rights reserved.</p>
         </footer>
       </motion.main>
     </>

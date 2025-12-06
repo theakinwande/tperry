@@ -70,10 +70,10 @@ export default function WorkPage() {
         <MagneticElement>
           <Link href="/" className={styles.logo}>
             <Image 
-              src="/tperry.png" 
+              src="/tperry.svg" 
               alt="T Perry Logo" 
-              width={120} 
-              height={40}
+              width={150} 
+              height={64}
               className={styles.logoImg}
             />
           </Link>
