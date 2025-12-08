@@ -98,7 +98,7 @@ export default function Home() {
                 animate={introPhase >= 1 ? { clipPath: 'inset(0 0% 0 0)' } : {}}
                 transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
               >
-                tperry
+                tperryskillz
               </motion.div>
               
               {/* Line */}
