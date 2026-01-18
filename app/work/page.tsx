@@ -6,7 +6,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './work.module.css';
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  year: string;
+  imageUrl?: string | null;
+  videoUrl?: string | null;
+}
+
+// Fallback projects if API fails or no projects exist
+const fallbackProjects: Project[] = [
   { id: 1, title: 'Project Alpha', category: 'Motion Design', year: '2024' },
   { id: 2, title: 'Brand Vision', category: 'Visual Identity', year: '2024' },
   { id: 3, title: 'Fluid Motion', category: 'Animation', year: '2023' },
@@ -50,12 +60,31 @@ export default function WorkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollWidth, setScrollWidth] = useState(0);
+  const [projects, setProjects] = useState<Project[]>(fallbackProjects);
+
+  // Fetch projects from API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch('/api/projects');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.length > 0) {
+            setProjects(data);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
       setScrollWidth(scrollRef.current.scrollWidth - window.innerWidth);
     }
-  }, []);
+  }, [projects]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -112,9 +141,28 @@ export default function WorkPage() {
               >
                 <MagneticElement className={styles.projectInner}>
                   <div className={styles.projectImage}>
-                    <span className={styles.projectNumber}>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
+                    {project.videoUrl ? (
+                      <video
+                        src={project.videoUrl}
+                        className={styles.projectMedia}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    ) : project.imageUrl ? (
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        fill
+                        className={styles.projectMedia}
+                        style={{ objectFit: 'cover' }}
+                      />
+                    ) : (
+                      <span className={styles.projectNumber}>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    )}
                   </div>
                   <div className={styles.projectInfo}>
                     <h2 className={styles.projectTitle}>{project.title}</h2>

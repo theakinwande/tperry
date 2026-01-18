@@ -240,7 +240,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            I'm a motion designer and creative developer passionate about 
+            I'm a designer and creative developer passionate about 
             bringing ideas to life through animation and visual storytelling.
           </motion.p>
         </section>
@@ -262,20 +262,23 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <MagneticText>
-              <a href="mailto:hello@tperry.com" className={styles.contactLink}>Email</a>
+              <a href="oyewusitemitayoxyz@gmail.com" className={styles.contactLink}>Email</a>
             </MagneticText>
             <MagneticText>
-              <a href="#" className={styles.contactLink}>Twitter</a>
+              <a href="https://x.com/temitayoxxx" className={styles.contactLink}>Twitter</a>
             </MagneticText>
             <MagneticText>
               <a href="#" className={styles.contactLink}>Instagram</a>
+            </MagneticText>
+             <MagneticText>
+              <a href="https://behance.net/temitayooyewusi" className={styles.contactLink}>Behance</a>
             </MagneticText>
           </motion.div>
         </section>
 
         {/* Footer */}
         <footer className={styles.footer}>
-          <p>© 2025 tperry. All rights reserved.</p>
+          <p>© 2026 tperry. All rights reserved.</p>
         </footer>
       </motion.main>
     </>
