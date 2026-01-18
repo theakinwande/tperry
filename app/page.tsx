@@ -240,8 +240,8 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            I'm a designer and creative developer passionate about 
-            bringing ideas to life through animation and visual storytelling.
+            I'm a creative designer who blends graphic design, digital art, and motion to tell stories that resonate.
+My work is bold, thoughtful, and shaped by the world around me-made not just to look good, but to mean something.
           </motion.p>
         </section>
 
