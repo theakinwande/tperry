@@ -6,12 +6,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../projects.module.css';
 
+interface Category {
+  id: number;
+  name: string;
+}
+
 export default function EditProjectPage() {
   const router = useRouter();
   const params = useParams();
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const [formData, setFormData] = useState({
@@ -27,8 +33,16 @@ export default function EditProjectPage() {
   const [mediaType, setMediaType] = useState<'image' | 'video' | null>(null);
 
   useEffect(() => {
-    const fetchProject = async () => {
+    const fetchData = async () => {
       try {
+        // Fetch categories
+        const catRes = await fetch('/api/categories');
+        if (catRes.ok) {
+          const catData = await catRes.json();
+          setCategories(catData);
+        }
+
+        // Fetch project
         const res = await fetch(`/api/projects/${params.id}`);
         if (res.ok) {
           const project = await res.json();
@@ -48,16 +62,16 @@ export default function EditProjectPage() {
           }
         }
       } catch (error) {
-        console.error('Error fetching project:', error);
+        console.error('Error fetching data:', error);
       } finally {
         setFetching(false);
       }
     };
 
-    fetchProject();
+    fetchData();
   }, [params.id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -159,16 +173,33 @@ export default function EditProjectPage() {
 
           <div className={styles.formRow}>
             <div className={styles.formField}>
-              <label htmlFor="category">Category *</label>
-              <input
-                type="text"
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                placeholder="e.g., Motion Design"
-                required
-              />
+              <label htmlFor="category">Folder/Category *</label>
+              {categories.length > 0 ? (
+                <select
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select a folder</option>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.name}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type="text"
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  placeholder="e.g., Motion Design"
+                  required
+                />
+              )}
             </div>
 
             <div className={styles.formField}>

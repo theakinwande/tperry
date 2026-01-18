@@ -8,17 +8,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  order     Int       @default(0)
+  createdAt DateTime  @default(now())
+  projects  Project[]
+}
+
 model Project {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   category    String
+  categoryId  Int?
+  categoryRef Category? @relation(fields: [categoryId], references: [id])
   year        String
   description String?
   imageUrl    String?
   videoUrl    String?
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  order       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Admin {

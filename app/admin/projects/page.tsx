@@ -66,6 +66,9 @@ export default function ProjectsPage() {
       <header className={styles.header}>
         <h1 className={styles.title}>Projects</h1>
         <div className={styles.actions}>
+          <Link href="/admin/folders" className={styles.folderLink}>
+            📁 Folders
+          </Link>
           <Link href="/admin/projects/new" className={styles.addButton}>
             + Add Project
           </Link>
