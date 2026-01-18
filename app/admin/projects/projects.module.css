@@ -375,6 +375,42 @@
   border-color: #fff;
 }
 
+/* Message Styles */
+.successMessage {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  color: #4ade80;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.errorMessage {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff6b6b;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+/* Settings Link */
+.settingsLink {
+  background: transparent;
+  color: #888;
+  border: 1px solid #333;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.settingsLink:hover {
+  color: #fff;
+  border-color: #555;
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

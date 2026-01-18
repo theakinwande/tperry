@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs/promises';
+import { v2 as cloudinary } from 'cloudinary';
 import jwt from 'jsonwebtoken';
 
-const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads');
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // Helper to verify admin token
 function verifyAdmin(request: NextRequest): boolean {
@@ -42,30 +46,27 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid file type. Allowed: JPEG, PNG, GIF, WebP, MP4, WebM' }, { status: 400 });
     }
 
-    // Determine folder based on file type
+    // Determine if it's a video
     const isVideo = file.type.startsWith('video/');
-    const subfolder = isVideo ? 'videos' : 'images';
-    const uploadDir = path.join(UPLOAD_DIR, subfolder);
+    const resourceType = isVideo ? 'video' : 'image';
 
-    // Ensure upload directory exists
-    await fs.mkdir(uploadDir, { recursive: true });
+    // Convert file to base64 for Cloudinary upload
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const base64 = buffer.toString('base64');
+    const dataUri = `data:${file.type};base64,${base64}`;
 
-    // Create unique filename
-    const ext = file.name.split('.').pop();
-    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const filePath = path.join(uploadDir, fileName);
-
-    // Save file
-    const arrayBuffer = await file.arrayBuffer();
-    await fs.writeFile(filePath, Buffer.from(arrayBuffer));
-
-    // Return the public URL
-    const publicUrl = `/uploads/${subfolder}/${fileName}`;
+    // Upload to Cloudinary
+    const result = await cloudinary.uploader.upload(dataUri, {
+      folder: 'tperry-portfolio',
+      resource_type: resourceType,
+    });
 
     return NextResponse.json({
       success: true,
-      url: publicUrl,
-      type: isVideo ? 'video' : 'image'
+      url: result.secure_url,
+      type: isVideo ? 'video' : 'image',
+      publicId: result.public_id,
     });
   } catch (error) {
     console.error('Upload error:', error);

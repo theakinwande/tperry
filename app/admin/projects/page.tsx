@@ -72,6 +72,9 @@ export default function ProjectsPage() {
           <Link href="/admin/projects/new" className={styles.addButton}>
             + Add Project
           </Link>
+          <Link href="/admin/settings" className={styles.settingsLink}>
+            ⚙️ Settings
+          </Link>
           <button onClick={handleLogout} className={styles.logoutButton}>
             Logout
           </button>
