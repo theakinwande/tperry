@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# T Perry Portfolio
 
-## Getting Started
+A creative portfolio website with a folder-based work gallery and admin dashboard for managing projects.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 📁 **Folder-Based Gallery** - Projects organized by category with smooth animations
+- 🎬 **Media Uploads** - Support for images and videos via Cloudinary
+- 🔐 **Admin Dashboard** - Secure login, project management, and settings
+- 📱 **Fully Responsive** - Optimized for all devices
+- ⚡ **Fast & Modern** - Built with Next.js 16 and React 19
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 16
+- **Database:** PostgreSQL (Neon)
+- **ORM:** Prisma
+- **Storage:** Cloudinary
+- **Styling:** CSS Modules
+- **Animations:** Framer Motion
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- PostgreSQL database (or [Neon](https://neon.tech) account)
+- [Cloudinary](https://cloudinary.com) account
+
+### Installation
+
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/yourusername/tperry.git
+   cd tperry
+   ```
+
+2. Install dependencies
+
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Then fill in your database and Cloudinary credentials.
+
+4. Run database migrations
+
+   ```bash
+   npx prisma migrate dev
+   npx prisma db seed
+   ```
+
+5. Start the development server
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000)
+
+## 📂 Project Structure
+
+```
+├── app/
+│   ├── admin/          # Admin dashboard pages
+│   ├── api/            # API routes
+│   ├── work/           # Work/portfolio page
+│   └── page.tsx        # Homepage
+├── prisma/
+│   ├── schema.prisma   # Database schema
+│   └── seed.ts         # Database seeding
+└── public/             # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔑 Admin Access
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Default credentials after seeding:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Email:** oyewusitemitayoxyz@gmail.com
+- **Password:** admin123
 
-## Learn More
+_Remember to change the password after first login!_
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+MIT License - feel free to use this project for your own portfolio!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ by T Perry
