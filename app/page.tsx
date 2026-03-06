@@ -265,10 +265,13 @@ My work is bold, thoughtful, and shaped by the world around me-made not just to 
               <a href="oyewusitemitayoxyz@gmail.com" className={styles.contactLink}>Email</a>
             </MagneticText>
             <MagneticText>
-              <a href="https://x.com/temitayoxxx" className={styles.contactLink}>Twitter</a>
+              <a href="https://x.com/tperryxyz" className={styles.contactLink}>Twitter</a>
             </MagneticText>
             <MagneticText>
-              <a href="#" className={styles.contactLink}>Instagram</a>
+              <a href="https://instagram.com/tperryxyz" className={styles.contactLink}>Instagram</a>
+            </MagneticText>
+            <MagneticText>
+              <a href="https://tiktok.com/@tperryxyz" className={styles.contactLink}>TikTok</a>
             </MagneticText>
              <MagneticText>
               <a href="https://behance.net/temitayooyewusi" className={styles.contactLink}>Behance</a>
