@@ -179,6 +179,22 @@ export default function Home() {
         {/* Hero Section */}
         <section className={styles.hero}>
           <div className={styles.heroContent}>
+            <motion.div
+              className={styles.heroAvatar}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
+            >
+              <Image
+                src="/tperry-avatar.jpeg"
+                alt="Profile picture"
+                width={200}
+                height={200}
+                className={styles.heroAvatarImg}
+                priority
+              />
+            </motion.div>
+
             <motion.h1
               className={styles.heroTitle}
               initial={{ opacity: 0, y: 50 }}

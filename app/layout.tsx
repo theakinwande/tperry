@@ -11,6 +11,10 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "tperry | Designer",
   description: "Motion Designer • Graphics Artist • Video Editor",
+  icons: {
+    icon: "/tperry-avatar.jpeg",
+    apple: "/tperry-avatar.jpeg",
+  },
 };
 
 export default function RootLayout({

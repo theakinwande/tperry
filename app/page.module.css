@@ -203,6 +203,20 @@
   z-index: 10;
 }
 
+.heroAvatar {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.heroAvatarImg {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gray-800);
+}
+
 .heroTitle {
   font-size: clamp(2.5rem, 10vw, 6rem);
   font-weight: 500;
