@@ -56,11 +56,22 @@ export async function POST(req: NextRequest) {
     const base64 = buffer.toString('base64');
     const dataUri = `data:${file.type};base64,${base64}`;
 
-    // Upload to Cloudinary
-    const result = await cloudinary.uploader.upload(dataUri, {
+    // Upload to Cloudinary with optimization
+    const uploadOptions: Record<string, unknown> = {
       folder: 'tperry-portfolio',
       resource_type: resourceType,
-    });
+    };
+
+    // Apply image optimizations on upload
+    if (!isVideo) {
+      uploadOptions.transformation = [
+        { width: 1200, crop: 'limit' },  // max 1200px wide
+        { quality: 'auto:good' },         // auto compress
+        { fetch_format: 'auto' },         // serve WebP/AVIF when supported
+      ];
+    }
+
+    const result = await cloudinary.uploader.upload(dataUri, uploadOptions);
 
     return NextResponse.json({
       success: true,

@@ -20,33 +20,199 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1.25rem 3rem;
   z-index: 200;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   color: #fff;
 }
 
 .logo {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  text-transform: lowercase;
+  letter-spacing: -0.03em;
+}
+
+.navLinks {
   display: flex;
   align-items: center;
+  gap: 3rem;
 }
 
-.logoImg {
-  height: 50px;
-  width: auto;
-  filter: brightness(0) invert(1);
-}
-
-.backLink {
-  color: inherit;
+.navLink {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  color: #fff;
   text-decoration: none;
-  font-size: 0.875rem;
-  opacity: 0.7;
-  transition: opacity 0.3s;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
 }
 
-.backLink:hover {
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: width 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* ─── Hamburger ─── */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 210;
+}
+
+.hamburgerLine {
+  display: block;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.45s cubic-bezier(0.77, 0, 0.18, 1);
+  transform-origin: center;
+}
+
+.hamburgerLine:nth-child(1) {
+  width: 24px;
+}
+
+.hamburgerLine:nth-child(2) {
+  width: 16px;
+}
+
+.hamburger:hover .hamburgerLine:nth-child(2) {
+  width: 24px;
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(1) {
+  width: 24px;
+  transform: translateY(4px) rotate(45deg);
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(2) {
+  width: 24px;
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.navMenuOpen {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* ─── Mobile Menu ─── */
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  z-index: 150;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobileMenuOpen {
   opacity: 1;
+  visibility: visible;
+}
+
+.mobileNavLink {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: clamp(1.75rem, 6vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================
+   SKELETON LOADING
+   ============================================ */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeletonFolder {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.skeletonTab {
+  height: 14px;
+  width: 40%;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+.skeletonBody {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 0 12px 12px 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.skeletonText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.skeletonLine {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+.skeletonIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
 }
 
 /* ============================================
@@ -59,18 +225,21 @@
 }
 
 .pageTitle {
+  font-family: var(--font-syne), system-ui, sans-serif;
   font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 200;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: -0.03em;
   margin-bottom: 0.5rem;
 }
 
 .pageSubtitle {
-  font-size: 0.875rem;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
   color: var(--gray-500);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
 }
 
 /* ============================================
@@ -141,16 +310,19 @@
 }
 
 .folderName {
+  font-family: var(--font-syne), system-ui, sans-serif;
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--foreground);
 }
 
 .folderCount {
-  font-size: 0.75rem;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.7rem;
   color: var(--gray-500);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 .folderIcon {
@@ -184,10 +356,11 @@
 }
 
 .panelTitle {
+  font-family: var(--font-syne), system-ui, sans-serif;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: -0.02em;
 }
 
 .closeButton {
@@ -250,6 +423,12 @@
   position: absolute;
   top: 0;
   left: 0;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .projectNumber {
@@ -280,21 +459,32 @@
    ============================================ */
 
 @media (max-width: 768px) {
+  .wrapper {
+    overflow-x: hidden;
+  }
+
   .nav {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1.25rem;
   }
 
-  .logoImg {
-    height: 36px;
+  .logo {
+    font-size: 1.2rem;
   }
 
-  .backLink {
-    font-size: 0.75rem;
-    padding: 0.5rem;
+  .navLinks {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobileMenu {
+    display: flex;
   }
 
   .pageHeader {
-    padding: 5rem 1rem 1.5rem;
+    padding: 5rem 1.25rem 1.5rem;
   }
 
   .pageTitle {
@@ -307,7 +497,7 @@
   }
 
   .folderContainer {
-    padding: 0.75rem;
+    padding: 0.75rem 1.25rem;
   }
 
   .folderGrid {

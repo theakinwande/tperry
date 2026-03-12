@@ -17,15 +17,16 @@
 }
 
 .introName {
+  font-family: var(--font-syne), system-ui, sans-serif;
   font-size: clamp(2rem, 10vw, 8rem);
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: -0.05em;
   color: #fff;
   overflow: hidden;
 }
 
 .introLine {
-  width: 100px;
+  width: 80px;
   height: 2px;
   background: #fff;
   margin: 2rem auto;
@@ -33,18 +34,20 @@
 }
 
 .introRole {
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  font-weight: 300;
-  letter-spacing: 0.2em;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* ============================================
-   MAIN LAYOUT
+   MAIN
    ============================================ */
 
 .main {
+  position: relative;
 }
 
 /* ============================================
@@ -57,32 +60,24 @@
   left: 0;
   right: 0;
   z-index: 200;
-  padding: 0.75rem 2rem;
+  padding: 1.25rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: transparent;
-  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
   color: #fff;
   text-decoration: none;
-  letter-spacing: -0.02em;
-}
-
-.logoImg {
-  object-fit: contain;
-  width: auto;
-  height: 50px;
-  display: block;
-  filter: brightness(0) invert(1);
-}
-
-.logoLight {
-  font-weight: 300;
+  text-transform: lowercase;
+  letter-spacing: -0.03em;
 }
 
 .navLinks {
@@ -92,11 +87,12 @@
 }
 
 .navLink {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
   color: #fff;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   position: relative;
 }
@@ -109,45 +105,73 @@
   width: 0;
   height: 1px;
   background: #fff;
-  transition: width 0.3s ease;
+  transition: width 0.4s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .navLink:hover::after {
   width: 100%;
 }
 
-/* Hamburger Button */
+/* ─── Hamburger ─── */
+
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  padding: 10px;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 200;
+  z-index: 210;
 }
 
 .hamburgerLine {
-  width: 25px;
+  display: block;
   height: 2px;
   background: #fff;
-  transition: all 0.3s ease;
+  border-radius: 2px;
+  transition: all 0.45s cubic-bezier(0.77, 0, 0.18, 1);
+  transform-origin: center;
 }
 
-.hamburgerLine.open:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+/* Top line — full width */
+.hamburgerLine:nth-child(1) {
+  width: 24px;
 }
 
-.hamburgerLine.open:nth-child(2) {
-  opacity: 0;
+/* Bottom line — shorter, right-aligned */
+.hamburgerLine:nth-child(2) {
+  width: 16px;
 }
 
-.hamburgerLine.open:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+/* Hover → bottom line expands */
+.hamburger:hover .hamburgerLine:nth-child(2) {
+  width: 24px;
 }
 
-/* Mobile Menu */
+/* ─── Open state → X ─── */
+
+.hamburgerOpen .hamburgerLine:nth-child(1) {
+  width: 24px;
+  transform: translateY(4px) rotate(45deg);
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(2) {
+  width: 24px;
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* When mobile menu is open, make nav fully opaque */
+.navMenuOpen {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* ─── Mobile Menu ─── */
+
 .mobileMenu {
   position: fixed;
   top: 0;
@@ -159,7 +183,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
   z-index: 150;
   opacity: 0;
   visibility: hidden;
@@ -172,166 +196,349 @@
 }
 
 .mobileNavLink {
+  font-family: var(--font-syne), system-ui, sans-serif;
   color: #fff;
   text-decoration: none;
-  font-size: 2rem;
-  font-weight: 500;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: -0.02em;
   transition: opacity 0.3s ease;
 }
 
 .mobileNavLink:hover {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 /* ============================================
-   HERO SECTION
+   HERO — ASYMMETRIC EDITORIAL
    ============================================ */
 
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 2rem;
+  padding: 8rem 4rem 6rem;
 }
 
-.heroContent {
-  text-align: center;
-  z-index: 10;
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.heroAvatar {
-  margin-bottom: 2rem;
+.heroLeft {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.heroAvatarImg {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--gray-800);
+.heroLabel {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 2.5rem;
+  display: block;
 }
 
 .heroTitle {
-  font-size: clamp(2.5rem, 10vw, 6rem);
-  font-weight: 500;
-  line-height: 1;
-  margin-bottom: 2rem;
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
+  margin-bottom: 2.5rem;
 }
 
-.distortText {
-  display: inline-block;
-  cursor: default;
+.heroTitleLine {
+  display: block;
+  transition: letter-spacing 0.4s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.heroSubtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+.heroTitleLine:hover {
+  letter-spacing: 0.01em;
+}
+
+.heroTitleLineIndent {
+  margin-left: clamp(1.5rem, 4vw, 4.5rem);
+  color: var(--gray-300);
+}
+
+.heroDesc {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(0.95rem, 1.3vw, 1.125rem);
   font-weight: 300;
+  line-height: 1.75;
   color: var(--gray-400);
-  max-width: 500px;
-  margin: 0 auto 3rem;
-}
-
-.heroCta {
-  display: inline-block;
+  max-width: 380px;
+  margin-bottom: 3rem;
 }
 
 .ctaBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1.25rem 2.5rem;
-  background: #fff;
-  color: #000;
-  text-decoration: none;
+  gap: 1rem;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.8rem;
   font-weight: 500;
-  font-size: 1rem;
-  border-radius: 0;
-  transition: all 0.3s ease;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  text-decoration: none;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--foreground);
+  transition: padding-bottom 0.3s ease;
 }
 
 .ctaBtn:hover {
-  background: var(--gray-200);
+  padding-bottom: 0.9rem;
 }
 
 .ctaBtn:hover .ctaArrow {
-  transform: translateX(5px);
+  transform: translateX(8px);
 }
 
 .ctaArrow {
   transition: transform 0.3s ease;
+  font-size: 1.1rem;
 }
 
-.heroCircle {
-  position: absolute;
-  width: 50vw;
-  height: 50vw;
-  max-width: 600px;
-  max-height: 600px;
-  border: 1px solid var(--gray-800);
-  border-radius: 50%;
-  z-index: 1;
-}
+/* ─── Hero Image (editorial portrait crop + animation) ─── */
 
-/* ============================================
-   SECTIONS
-   ============================================ */
-
-.about,
-.contact {
-  padding: 10rem 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.sectionTitle {
-  font-size: clamp(2rem, 6vw, 4rem);
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-}
-
-.aboutText {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
-  font-weight: 300;
-  line-height: 1.8;
-  color: var(--gray-400);
-}
-
-.contactLinks {
+.heroRight {
   display: flex;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-.contactLink {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 400;
+  justify-content: flex-end;
   position: relative;
 }
 
-.contactLink::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #fff;
-  transition: width 0.3s ease;
+.heroImgWrap {
+  position: relative;
+  overflow: hidden;
+  animation: heroFloat 6s ease-in-out infinite;
 }
 
-.contactLink:hover::after {
+.heroImg {
   width: 100%;
+  max-width: 420px;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: grayscale(40%) contrast(1.05);
+  transition: filter 0.6s ease, transform 0.6s ease;
+  display: block;
+}
+
+.heroImgWrap:hover .heroImg {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.03);
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ============================================
+   MARQUEE — KINETIC SEPARATOR
+   ============================================ */
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--gray-800);
+  border-bottom: 1px solid var(--gray-800);
+  padding: 1.5rem 0;
+  user-select: none;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--gray-400);
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   SECTIONS — EDITORIAL SIDEBAR LAYOUT
+   ============================================ */
+
+.section {
+  padding: 10rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sectionBorder {
+  border-top: 1px solid var(--gray-800);
+}
+
+.sectionGrid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.sectionSidebar {
+  position: sticky;
+  top: 8rem;
+}
+
+.sectionIndex {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 800;
+  color: var(--gray-800);
+  display: block;
+  line-height: 1;
+}
+
+.sectionLabel {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 0.75rem;
+  display: block;
+}
+
+.sectionContent {
+  min-width: 0; /* prevent grid overflow */
+}
+
+/* ─── About ─── */
+
+.aboutQuote {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--foreground);
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+  max-width: 680px;
+  border-left: 3px solid var(--gray-600);
+  padding-left: 1.5rem;
+}
+
+.aboutBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.aboutText {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--gray-400);
+  max-width: 680px;
+}
+
+.aboutText strong {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.aboutText em {
+  color: var(--gray-300);
+  font-style: italic;
+}
+
+.aboutDisciplines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.disciplineTag {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--gray-700);
+  border-radius: 100px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.disciplineTag:hover {
+  border-color: var(--gray-400);
+  color: var(--foreground);
+}
+
+/* ─── Contact ─── */
+
+.contactHeading {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: clamp(2.5rem, 5.5vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  margin-bottom: 3rem;
+}
+
+.contactEmail {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  font-weight: 400;
+  color: var(--foreground);
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--gray-600);
+  transition: border-color 0.3s ease;
+  margin-bottom: 3rem;
+}
+
+.contactEmail:hover {
+  border-color: var(--foreground);
+}
+
+.contactSocials {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.socialLink:hover {
+  color: var(--foreground);
 }
 
 /* ============================================
@@ -339,57 +546,267 @@
    ============================================ */
 
 .footer {
-  padding: 4rem 2rem;
-  text-align: center;
-  color: var(--gray-600);
-  font-size: 0.875rem;
+  padding: 3rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-top: 1px solid var(--gray-800);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-600);
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE — TABLET
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 7rem 2rem 4rem;
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .section {
+    padding: 6rem 2rem;
+  }
+
+  .sectionGrid {
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+  }
+
+  .footer {
+    padding: 2rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE
    ============================================ */
 
 @media (max-width: 768px) {
+  .main {
+    overflow-x: hidden;
+  }
+
   .nav {
-    padding: 0.75rem 1rem;
-  }
-
-  .navLinks {
-    gap: 1.5rem;
-  }
-
-  .navLink {
-    font-size: 0.8rem;
+    padding: 0.75rem 1.25rem;
   }
 
   .logoImg {
-    height: 40px;
-  }
-
-  /* Show hamburger, hide desktop nav */
-  .hamburger {
-    display: flex;
+    height: 36px;
   }
 
   .navLinks {
     display: none;
   }
 
+  .hamburger {
+    display: flex;
+  }
+
   .mobileMenu {
     display: flex;
   }
 
-  .about,
-  .contact {
-    padding: 3rem 1.5rem;
+  /* ─── Hero Mobile ─── */
+
+  .hero {
+    min-height: auto;
+    padding: 5.5rem 1.25rem 3rem;
   }
 
-  .contactLinks {
+  .heroGrid {
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
 
+  .heroRight {
+    justify-content: center;
+    order: -1;
+  }
+
+  .heroImg {
+    max-width: 260px;
+    aspect-ratio: 4 / 5;
+  }
+
+  .heroImgWrap {
+    animation-duration: 5s;
+  }
+
+  .heroLeft {
+    align-items: flex-start;
+  }
+
+  .heroLabel {
+    font-size: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .heroTitleLineIndent {
+    margin-left: 0.75rem;
+  }
+
+  .heroDesc {
+    font-size: 0.9rem;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .ctaBtn {
+    font-size: 0.7rem;
+  }
+
+  /* ─── Marquee Mobile ─── */
+
+  .marquee {
+    padding: 1rem 0;
+  }
+
+  .marqueeTrack {
+    font-size: 0.7rem;
+    animation-duration: 18s;
+  }
+
+  /* ─── Sections Mobile ─── */
+
+  .section {
+    padding: 4rem 1.25rem;
+  }
+
+  .sectionGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sectionSidebar {
+    position: static;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .sectionIndex {
+    font-size: 1.75rem;
+  }
+
+  .sectionLabel {
+    margin-top: 0;
+    font-size: 0.6rem;
+  }
+
+  .aboutQuote {
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .aboutBody {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .aboutText {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .aboutDisciplines {
+    gap: 0.5rem;
+  }
+
+  .disciplineTag {
+    font-size: 0.65rem;
+    padding: 0.4rem 1rem;
+  }
+
+  /* ─── Contact Mobile ─── */
+
+  .contactHeading {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contactEmail {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+    word-break: break-all;
+  }
+
+  .contactSocials {
+    gap: 1.25rem;
+  }
+
+  .socialLink {
+    font-size: 0.7rem;
+  }
+
+  /* ─── Footer Mobile ─── */
+
   .footer {
-    padding: 0.5rem 1rem;
+    padding: 1.5rem 1.25rem;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: center;
+    font-size: 0.6rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — SMALL PHONES
+   ============================================ */
+
+@media (max-width: 400px) {
+  .hero {
+    padding: 5rem 1rem 2.5rem;
+  }
+
+  .heroImg {
+    max-width: 220px;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroDesc {
+    font-size: 0.85rem;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .aboutQuote {
+    font-size: 1.15rem;
+  }
+
+  .aboutText {
+    font-size: 0.9rem;
+  }
+
+  .contactHeading {
+    font-size: 1.75rem;
+  }
+
+  .footer {
+    padding: 1.25rem 1rem;
   }
 }
