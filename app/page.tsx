@@ -82,11 +82,36 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <motion.div className={styles.introContent}>
+              {/* Avatar with animated ring */}
+              <motion.div
+                className={styles.introAvatarWrap}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={introPhase >= 1 ? { scale: 1, opacity: 1 } : {}}
+                transition={{ duration: 0.6, ease: entryEase }}
+              >
+                <svg
+                  className={`${styles.introAvatarRing} ${introPhase >= 1 ? styles.introAvatarRingAnimate : ''}`}
+                  viewBox="0 0 100 100"
+                >
+                  <circle cx="50" cy="50" r="48" />
+                </svg>
+                <div className={`${styles.introAvatarInner} ${introPhase >= 2 ? styles.introAvatarColor : ''}`}>
+                  <Image
+                    src="/tperry-avatar.jpeg"
+                    alt="T Perry"
+                    width={120}
+                    height={120}
+                    className={styles.introAvatar}
+                    priority
+                  />
+                </div>
+              </motion.div>
+
               <motion.div
                 className={styles.introName}
                 initial={{ clipPath: 'inset(0 100% 0 0)' }}
                 animate={introPhase >= 1 ? { clipPath: 'inset(0 0% 0 0)' } : {}}
-                transition={{ duration: 1, ease: entryEase }}
+                transition={{ duration: 1, ease: entryEase, delay: 0.2 }}
               >
                 tperry
               </motion.div>

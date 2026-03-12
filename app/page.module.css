@@ -14,12 +14,67 @@
 
 .introContent {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Avatar with animated ring */
+.introAvatarWrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 2rem;
+}
+
+.introAvatarRing {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 301.6; /* 2 * PI * 48 */
+  stroke-dashoffset: 301.6;
+  transform: rotate(-90deg);
+  transition: none;
+}
+
+.introAvatarRingAnimate {
+  animation: drawRing 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes drawRing {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.introAvatarInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.introAvatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter 0.8s ease;
+}
+
+.introAvatarColor .introAvatar {
+  filter: grayscale(0);
 }
 
 .introName {
   font-family: var(--font-chetta), system-ui, sans-serif;
-  font-size: clamp(2rem, 10vw, 8rem);
-  font-weight: 800;
+  font-size: clamp(1.75rem, 8vw, 6.5rem);
+  font-weight: 600;
   letter-spacing: -0.05em;
   color: #fff;
   overflow: hidden;
@@ -199,8 +254,8 @@
   font-family: var(--font-chetta), system-ui, sans-serif;
   color: #fff;
   text-decoration: none;
-  font-size: clamp(2rem, 8vw, 3.5rem);
-  font-weight: 700;
+  font-size: clamp(1.75rem, 7vw, 3rem);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   transition: opacity 0.3s ease;
@@ -364,7 +419,7 @@
   width: max-content;
   animation: marqueeScroll 30s linear infinite;
   font-family: var(--font-chetta), system-ui, sans-serif;
-  font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+  font-size: clamp(0.75rem, 1.25vw, 1rem);
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -405,8 +460,8 @@
 
 .sectionIndex {
   font-family: var(--font-chetta), system-ui, sans-serif;
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  font-weight: 800;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 600;
   color: var(--gray-800);
   display: block;
   line-height: 1;
@@ -431,8 +486,8 @@
 
 .aboutQuote {
   font-family: var(--font-chetta), system-ui, sans-serif;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 700;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 600;
   line-height: 1.3;
   color: var(--foreground);
   letter-spacing: -0.02em;
@@ -496,8 +551,8 @@
 
 .contactHeading {
   font-family: var(--font-chetta), system-ui, sans-serif;
-  font-size: clamp(2.5rem, 5.5vw, 5rem);
-  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-weight: 600;
   line-height: 1;
   letter-spacing: -0.035em;
   margin-bottom: 3rem;
