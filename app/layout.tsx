@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Syne, Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const chetta = localFont({
+  src: "../public/fonts/ChettaVissto.ttf",
+  variable: "--font-chetta",
+  display: "swap",
+});
 
 const syne = Syne({
   weight: ["400", "500", "600", "700", "800"],
@@ -30,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${syne.variable} ${spaceGrotesk.variable} antialiased`}>
+      <body className={`${chetta.variable} ${syne.variable} ${spaceGrotesk.variable} antialiased`}>
         {children}
         {/* Film Grain Overlay */}
         <div className="grain" />
